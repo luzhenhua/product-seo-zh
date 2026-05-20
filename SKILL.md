@@ -20,6 +20,8 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 7. **数据具体化** — 写到"很多 / 高效 / 大量"这类模糊词时，强迫自己换成具体数字（feed size ≤XX mm、capacity XX-XX t/h、power XX-XX kW）
 8. **AI 产出 = 草稿，不是终稿** — 每一模块产出后明确告诉用户："这是 AI 草稿，发布前请人工核对数据真实性"
 9. **品牌名首次用全称、之后用简称** — 阶段 0.5 收集时同时问全称（如 "Henan Xinzhongyi Environmental Protection Equipment Co., Ltd."）和简称（如 "Zhongyi"）
+10. **全文总字数预算 1,600–1,900 字**（不含表格、不含 TDK head 部分）—— 每模块优先按目标下限走，宁短不长；累计 > 1,700 字后续模块走下限；上限 1,900 字超出必须裁
+11. **默认一次性出整篇（One-Shot）** —— 用户在阶段 0.5 后选"一次性"或不指定，AI 静默推进所有 Module 至完成；用户明确说"分模块跑"才走原来的逐模块审批流；跑完输出自检报告（字数 + 各模块达标 + 编造数据警示）
 
 ## 触发本 skill 时立即做的事
 
@@ -36,7 +38,7 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 > - **行业领域**：（如 "移动破碎与筛分设备 / 矿山骨料 / 建筑垃圾回收"）
 > - **目标读者**：（如 "海外采矿工程师、选矿厂采购决策者"）
 >
-> 4 个变量齐了之后，我按 Module 0 → 13 顺序推进，每完成 1 个模块停下等你回"继续"或反馈。
+> 4 个变量齐了之后，默认我会**一次性跑完整篇产品页**（约 1,600–1,900 字，含 TDK + 13 个模块 + FAQ），跑完直接交付完整内容 + 自检报告。如果你想分模块逐步审，回复"分模块跑"。
 
 ### 触发模式 B：单板块调用（`/product-seo-zh <module>` 或 自然语言"只跑 X"）
 
@@ -63,7 +65,7 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 1. 用中文复述一遍变量（让用户校对）
 2. 简单点评一下产品的搜索意图（commercial / supplier-evaluation / informational 混合）
 3. 简单点评目标读者的认知水平和关心的核心痛点（技术参数？性价比？交付周期？售后？）
-4. 然后说："变量已确认。整套跑回复'继续'进入 Module 0；单跑某个板块说板块名（如'跑 FAQ' / '跑参数表'）。"
+4. 然后说："变量已锁定。默认我会**一次性跑完整篇产品页**（约 1,600–1,900 字，TDK + 13 模块 + FAQ），跑完直接交付。如果要分模块逐步审，回复'分模块跑'；要单跑某板块说板块名（如'跑 FAQ' / '跑参数表'）；否则回复'开始'或直接说话，我立即开跑。"
 
 **校验规则**：
 - 产品名不能太泛（如只说 "crusher"）—— 至少到具体产品类别（如 "Mobile Crusher Plant" / "Jaw Crusher" / "Cone Crusher"）
@@ -95,6 +97,63 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 | 13 | FAQ | 常见问题 | ✅ 必跑 | "FAQ / 常见问题" |
 
 整套跑默认包含所有 ✅，跳过所有 ⚪。如果用户产品适合做对比 / 有真实案例，可以问用户要不要加上。
+
+---
+
+## 运行模式行为覆盖
+
+### One-Shot Mode（默认）
+
+当用户在阶段 0.5 选择"一次性"或不指定时：
+
+- **跑完每个 Module 后不要输出**："**Module N 完成**" / "请核对..." / "回复'继续'" 等系列提示语
+- **跑完每个 Module 后不要停**：直接静默推进到 Module N+1
+- **每模块内部自检**：每段生成完按禁用词库 + 字数预算自查，不达标内部重写一次再输出
+- **累计字数监控**：累计接近 1,700 字时，后续 Module 全部按字数目标下限输出；超 1,900 字必须裁，不输出超长内容
+- **所有 Module 跑完后**：输出**自检报告**（模板见下）+ 人工终审清单
+
+### Step-by-Step Mode（可选）
+
+当用户明确回复"分模块跑" / "step by step" / "我要逐步审"：
+
+- 按各 Module "执行说明" 里现有的"跑完后用中文说" 行为
+- 每完成 1 Module 停下等"继续"或反馈
+
+### 一次性模式自检报告模板
+
+整套跑完输出（在最终交付的英文产品页内容**下方**用中文呈现）：
+
+```
+═══════════════════════════
+本篇产品页自检报告
+═══════════════════════════
+
+📊 字数统计
+- 全文字数：XXXX 字（预算 1,600–1,900 ✅/⚠️/❌）
+- 各模块字数：
+  Module 1 Hero: XX 字 (目标 80–110)
+  Module 2 What Is: XXX 字 (目标 140–180)
+  Module 3 How Works: XXX 字 (目标 140–180)
+  Module 4 Types: XXX 字 (目标 100–150)
+  Module 5 Specs: 表格 + XX 字 disclaimer
+  Module 6 Applications: XXX 字 (目标 200–250 / 6–8 项)
+  Module 7 Project Case: XXX 字 + parameter table (目标 130–200)
+  Module 8 vs: XX 字散文 + 表 (目标 70–130)
+  Module 9 How to Choose: XXX 字 (目标 140–220 / 5–6 项)
+  Module 10 Price: XXX 字 (目标 140–200 / 5–6 项)
+  Module 11 Custom: XX 字 + inquiry form (目标 90–130)
+  Module 12 Manufacturer: XXX 字 (目标 110–170)
+  Module 13 FAQ: 7–8 × 20–30 字 ≈ XXX 字
+
+⚠️ 待人工核对（必看）
+- Module 5 参数表：所有规格为参考范围，发布前需对照贵司产品手册
+- Module 7 案例：项目地点 [X] + 关键数据为合理示例，如需替换为真实项目请告知
+- Module 12 Manufacturer：本篇用 [地区组合] + "XXX+ units" + "XX+ years experience"，已记入跨页日志
+- Module 13 FAQ：所有数据需与 Module 5 参数表交叉核对
+
+📁 跨页日志已更新：~/.claude/skills/product-seo-zh/track_record_log.md
+   下次跑产品页时我会自动 vary 地区组合避免模板感。
+```
 
 ---
 
@@ -192,12 +251,11 @@ Rules:
 Hero Paragraph
 ═══════════════════════════
 
-Write a 3-4 sentence overview paragraph with this structure:
+Write a 2-3 sentence overview paragraph (60-95 words total) with this structure:
 
-Sentence 1: What [品牌名简称] provides (direct, no warm-up)
-Sentence 2: Core equipment advantages (2-3 specific keywords like "uniform particle size / stable performance / long service life")
-Sentence 3: Suitable materials (one sentence listing real materials, e.g., "quartz, feldspar, limestone, coal, silica sand, and various metal ores")
-Sentence 4 (optional): Summary of what the brand offers
+Sentence 1 (~20-30 words): What [品牌名简称] provides (direct, no warm-up)
+Sentence 2 (~20-30 words): Core equipment advantages (2-3 specific keywords like "uniform particle size / stable performance / long service life")
+Sentence 3 (~20-35 words): Suitable materials (one sentence listing real materials, e.g., "quartz, feldspar, limestone, coal, silica sand, and various metal ores")
 
 Format reference:
 "Zhongyi is a trusted rod mill manufacturer and supplier, providing efficient grinding solutions for mining and industrial applications. Our rod mills deliver uniform particle size, stable performance, and long service life, meeting the demands of continuous production. Suitable for grinding materials such as quartz, feldspar, limestone, coal, silica sand, and various metal ores, Zhongyi offers reliable equipment and tailored solutions to customers worldwide."
@@ -265,7 +323,7 @@ H2 heading: pick one of these styles, prefer the most natural fit:
 - "Understanding [产品名]"
 
 ═══════════════════════════
-Structure: total-detail, 180-250 words, 2-3 paragraphs
+Structure: total-detail, 140-180 words, 2-3 paragraphs
 ═══════════════════════════
 
 Paragraph 1 (overview, 2-3 sentences):
@@ -273,17 +331,23 @@ Paragraph 1 (overview, 2-3 sentences):
 - Its position in the process workflow (e.g., "installed between crushing and beneficiation stages")
 - Core function/purpose
 
-Paragraph 2 (detail, 3-4 sentences):
+Paragraph 2 (detail, 2-3 sentences):
 - Key parameter ranges (diameter, capacity, energy, etc. — real numbers)
 - Factors affecting efficiency
 - One sentence summarizing the applicable industries
 
 Paragraph 3 (optional, if product has identifiable core components):
-- List core components with one-sentence function each
-- Format reference:
-  "Mill Shell — The rotating cylinder that houses the [media] and feed material, lined with wear-resistant steel or rubber."
-  "Steel Rods — The grinding media, arranged parallel to the mill axis."
-  "Trunnion Bearings — Support both ends of the rotating shell under heavy load."
+Pick ONE of two formats based on component complexity:
+
+FORMAT A — Bulleted (when each component needs a short function description):
+"Key components:
+•  **Component Name** — One-sentence function.
+•  **Component Name** — One-sentence function."
+
+FORMAT B — Inline (when components are simple and don't need individual explanations):
+"Key components: component A, component B with [spec], component C, and optional component D for [scenario]."
+
+Use Format A for equipment with 4+ distinct mechanical sub-systems (crushers, mills). Use Format B for integrated/simple systems (sensors, drums).
 
 Reference style (Mining Ball Mill):
 "A Mining Ball Mill is a critical grinding machine used in mineral processing to reduce crushed ore to the fine particle size required for downstream recovery. Typically installed between the crushing and beneficiation stages, it ensures adequate mineral liberation for processes such as flotation, gravity separation, leaching, and magnetic separation. Finished product sizes generally range from 20–200 microns..."
@@ -320,34 +384,34 @@ H2 heading: pick one of these styles:
 - "How [产品名] [Grinds/Crushes/Screens] Material"
 
 ═══════════════════════════
-Structure: total-detail, 200-300 words, 3 paragraphs
+Structure: total-detail, 140-180 words, 3 paragraphs
 ═══════════════════════════
 
-Paragraph 1 (core principle, 3-4 sentences):
+Paragraph 1 (core principle, 2-3 sentences):
 - The core operating principle in ONE clear sentence
 - Key mechanism (e.g., "line contact vs point contact" / "tracked chassis enables on-site relocation")
 - Essential difference from comparable equipment
 
-Paragraph 2 (process flow, 3-4 steps):
-Use this format:
-"The typical process flow is as follows:
-1. [Step 1: feeding] →
-2. [Step 2: primary processing] →
-3. [Step 3: screening / classification] →
-4. [Step 4: output / recirculation]"
+Paragraph 2 (process flow, 3-5 steps):
+Pick ONE of two formats based on step complexity (do not mix):
 
-Include real data per step (e.g., "feed sizes up to 600 mm", "screen mesh sizes 10-40 mm").
+FORMAT A — Inline arrow (steps ≤ 8 words each, short sequential actions):
+"The typical process: feed enters via hopper → drum rotation lifts and cascades material → undersize falls through screen openings → oversize moves along the 3°–7° slope and exits at the tail end."
+
+FORMAT B — Bullets (steps need sentence-level description with data):
+"Typical process flow:
+•  Raw feed enters from a hopper, feeder, or crusher discharge.
+•  Undersize drops through roller gaps onto a collection conveyor.
+•  Oversize rides along the roller surface to the discharge end for further crushing.
+•  A variable-speed drive adjusts roller RPM to match feed rate and material characteristics."
+
+NEVER use "1. step → 2. step → 3. step" numbered+arrow format. Include real data per step (e.g., "feed sizes up to 600 mm", "screen mesh sizes 10-40 mm").
 
 Paragraph 3 (factors affecting performance, 2-3 sentences):
 - List key parameters and their impact
 - Format reference:
-"Feed size control is important for energy efficiency. Feed size is generally controlled below XX mm..."
-"Discharge size depends on model, operating conditions, and [media/setting] selection..."
-
-Optional unique-mechanism sub-section (if applicable, e.g., Rod Mill's three forces):
-"① Impact — ...
-② Attrition — ...
-③ Line-Contact Pressure — ..."
+"Three forces act during screening: rotation-driven conveyance moves material at controlled pace; gravity separation drops undersize through gaps (10–300 mm); rolling agitation re-orients irregular particles."
+"Key factors affecting performance include feed moisture, crusher closed-side setting (adjustable from 20 to 80 mm), and screen mesh selection."
 
 Reference style (Rod Mill):
 "A rod mill works by rotating a cylindrical shell loaded with long steel rods, which lift, cascade, and roll against the feed material to progressively reduce particle size. Unlike fine grinding equipment, it relies on controlled line contact rather than random impact — making it one of the most predictable coarse grinding solutions in mineral processing."
@@ -384,19 +448,19 @@ H2 heading: pick one of these styles:
 - "[产品名] Types Explained"
 
 ═══════════════════════════
-Structure: total-detail, 150-250 words
+Structure: total-detail, 100-150 words
 ═══════════════════════════
 
-Paragraph 1 (overview, 2-3 sentences):
+Paragraph 1 (overview, 1-2 sentences):
 - ONE sentence stating the classification basis (by what dimension? e.g., "by discharge method" / "by chassis type")
-- Core difference between the main types (retention time / product size / mobility / applicable scenarios)
 - One sentence: "[品牌名简称] supplies and customizes all [N] types."
 
-Then introduce each type. Format reference:
-"[Type Name]. [Description in 2-3 sentences covering: how it works + key parameters + best application.]"
+Then introduce each type as a bullet. Required format:
+"•  **Type Name** — Description in 1-2 sentences with data ranges, ending with 'Best for [application]' or 'Preferred for [scenario].'"
 
-Reference example (Rod Mill):
-"Overflow Rod Mill. The most common type. Slurry overflows the discharge trunnion once it reaches the weir level, giving longer retention time and a finer, more uniform grind. Product size typically falls between 0.4 and 3 mm — preferred for wet grinding circuits."
+Reference example (Roller Screen):
+"•  **Horizontal Roller Screen** — Flat deck (0°), longer material dwell time for improved separation accuracy. Feed ≤ 400 mm, gap 20–150 mm, capacity up to 500 t/h. Best for quarry pre-screening and recycling.
+•  **Inclined Roller Screen** — Deck at 5°–15°, gravity-assisted material flow for higher throughput. Feed ≤ 600 mm, gap 30–250 mm, capacity up to 800 t/h. Preferred for coal scalping and aggregate plants."
 
 ═══════════════════════════
 Comparison Table
@@ -423,7 +487,8 @@ After the table: "These are typical reference ranges. Actual values depend on mo
 Rules
 ═══════════════════════════
 
-- Each type description: 2-3 sentences
+- Each type description: 1-2 sentences with data ranges (feed size, capacity, etc.)
+- Use bullet format `•  **Type Name** — description`, NOT paragraph format
 - Real data ranges required (product size, feed size, capacity)
 - Comparison table boosts professionalism
 
@@ -482,11 +547,21 @@ Reference format (Mining Ball Mill):
 Φ1830×7000 | ≤25 mm | 0.074-0.4 mm | 15-28 t/h | 245 kW
 
 ═══════════════════════════
-Disclaimer after table
+Disclaimer after table (≤30 words, vary phrasing each time)
 ═══════════════════════════
 
-Add this line (vary phrasing slightly):
-"Above specifications are based on [reference material/condition]. Actual capacity varies with material hardness, feed gradation, and moisture content. These figures serve as a starting reference only — final model selection should match your specific process route. Contact [品牌名简称] for a tailored recommendation."
+Pick ONE pattern, swap the specific conditions to match the product:
+
+Pattern A (with reference condition stated):
+"Note: Figures based on [medium-hard limestone (bulk density 1.6 t/m³)] with [closed-circuit screening]. Actual capacity varies with material hardness, feed gradation, moisture. Contact [品牌名简称] for a recommendation based on your material test report."
+
+Pattern B (generic reference values):
+"Specifications above are reference values. Actual [capacity / sorting accuracy] varies with material type, [key variable 1], and [key variable 2]. Contact [品牌名简称] for model selection based on your process conditions."
+
+Pattern C (shortest):
+"These figures are for reference only. Final selection should match actual material characteristics and process conditions."
+
+⚠️ ≤30 words total. Do not use 50+ word disclaimers — they look like AI boilerplate.
 
 ═══════════════════════════
 Rules
@@ -517,31 +592,24 @@ H2 heading: pick one of these styles:
 - "Where to Use [产品名]?"
 
 ═══════════════════════════
-Structure: total-detail
+Structure: total-detail, 200-250 words / 6-8 application items
 ═══════════════════════════
 
-Paragraph 1 (overview, 2-3 sentences):
-- Equipment's basic function and positioning
-- Position and role in the process workflow
+Paragraph 1 (overview, 1-2 sentences):
+- Equipment's basic function and position in the workflow
 - Summary of applicable industry range
 
-Then list 8-10 specific application items. Pick ONE of these two formats (don't mix):
+Then list 6-8 specific application items. Required format:
 
-FORMAT A — Detailed (with parameters):
-"1. [Industry/Material name] — One-sentence description of what it does + key parameter (if available, e.g., 'grinding to 75-150 μm')."
+"•  **Industry/Material Name** — One-sentence description of what the equipment does for this material, including a key parameter (e.g., 'grinding to 75–150 μm' / 'capacity 150–300 t/h' / 'reducing to below 50 mm')."
 
-Reference (Mining Ball Mill style):
-"1. Gold Ore Processing — Used to grind gold ore to fine particles (typically 75–150 μm) for efficient cyanidation and flotation.
-2. Iron Ore Processing — Prepares iron ore for magnetic separation and pelletizing by achieving uniform and controlled fineness.
-3. Copper Ore Processing — Enables effective mineral liberation for high-recovery flotation in sulfide and oxide copper operations."
+Reference (Color Sorter style):
+"•  **Quartz & Silica Sand** — Removes iron-stained particles to achieve SiO₂ purity of 99.5–99.9% for glass, semiconductor, and photovoltaic applications.
+•  **Feldspar** — Separates dark mineral inclusions and iron-bearing particles, improving whiteness for ceramic and glass grades.
+•  **Fluorite (Fluorspar)** — Removes gangue and dark impurities, raising CaF₂ grade toward 97%+ for metallurgical and acid-grade markets."
 
-FORMAT B — Grouped (no parameters):
-"Metal Mining: Iron ore, copper ore, gold ore, manganese ore, tungsten ore
-Non-Metallic Minerals: Quartz, feldspar, silica sand, fluorite, barite
-Construction Materials: Limestone, cement clinker, gypsum, sand and aggregates
-..."
-
-PREFER Format A when applications have distinct technical settings; use Format B when applications are just material lists.
+⚠️ NEVER use numbered list (1. 2. 3.) — always bullets (•) with **Term** bolded.
+⚠️ NEVER use Grouped Format (Metal Mining: a, b, c) — always individual bullets per industry.
 
 ═══════════════════════════
 Rules
@@ -569,41 +637,83 @@ Output the H2 + overview + application list directly.
 ```
 You are writing the "Project Case" section (H2) of a product page for [品牌名简称]'s [产品名].
 
-H2 heading: pick one of these styles:
-- "Featured Project Case – [产品名] in Action"
-- "[产品名] Project Case Studies"
-- "Real-World Application: [产品名]"
+H2 heading: format must follow this pattern:
+- "Featured Project — [Application/Material/Process] in/at [Location]"
+
+Examples (user's actual writing):
+- "Featured Project — Quartz Sand Color Sorting Line, Southeast Asia"
+- "Featured Project — Coal Scalping, Indonesia"
+- "Featured Project — Trommel Screen for Gold Ore Pre-Screening in West Africa"
+
+⚠️ NO H3 sub-heading inside Featured Project. The H2 alone is enough.
+⚠️ NO year in the heading or narrative (year is optional and usually omitted).
 
 ═══════════════════════════
-Structure: 1-2 project cases
+Structure: 1 case = narrative (130-200 words) + parameter table (7-10 rows)
 ═══════════════════════════
 
-For each case, write 3-4 sentences covering:
-1. Project location and year (e.g., "Zhengzhou, China, 2023" or "Sumatra, Indonesia, 2022")
-2. Scale: capacity / tonnage / production target
-3. Equipment configuration: which model(s) deployed, optional accessories
-4. Outcome: actual performance, customer benefit, ROI signal
+NARRATIVE — 2 paragraphs:
 
-Format reference (preferred concise style):
-"H3: 150 t/h Construction Waste Recycling Project in Zhengzhou
-A 2023 project for a municipal recycling contractor in Henan, China.
-Deployed: MCP-150T mobile impact crusher + dual-deck vibrating screen + magnetic separator.
-Output: 0-20 mm recycled aggregate at 145 t/h average, with steel recovery rate above 98%.
-Operation: Plant relocates between 3 demolition sites annually, reducing transport cost by ~35% versus a fixed plant."
+Paragraph 1 (~50-80 words): Setup
+- Project location (country or region — generic is fine, no specific city/facility name)
+- Project scale (capacity, daily/hourly tonnage, or production target)
+- Pain point or trigger (e.g., "high clay content caused frequent clogging", "purity below customer threshold")
+
+Paragraph 2 (~70-120 words): Solution + Outcome
+- Equipment deployed (model + qty, optional accessories)
+- Configuration choice (e.g., "two units in series for two-pass sorting", "with external rotating brush")
+- Quantified outcome (3-4 numbers: efficiency, yield, throughput, downtime reduction, etc.)
+- 1 sentence on stability/operational result if applicable
+
+Reference style (Trommel Screen for Gold Ore):
+"A 450 t/d gold processing plant in Burkina Faso faced excessive crusher wear due to high oversize (+80 mm) and clay-bound material. Clay content over 15% caused frequent clogging in the existing vibrating pre-screen, reducing throughput by nearly 20%.
+
+Zhongyi supplied a ZY-20-60 stationary trommel screen (2,000 mm × 6,000 mm) with dual-section 40 mm and 15 mm panels, positioned after the apron feeder. Material <15 mm bypassed crushing to the heap leach pad; 15–40 mm entered the jaw crusher; +40 mm was rejected. An external rotating brush was added for the sticky clay zone. After commissioning, throughput reached 22–26 t/h, jaw liner wear dropped by an estimated 35%, and clay-related downtime fell to near zero."
+
+PARAMETER TABLE — 7-10 rows, 2 columns:
+
+| Parameter | Specification |
+|-----------|---------------|
+
+Required rows (must include all):
+- Project Location (country + sub-region, e.g., "South Kalimantan, Indonesia")
+- Raw Material (material type + qualifier, e.g., "ROM thermal coal, high clay")
+- Capacity (with rated qualifier if relevant, e.g., "800 t/h (rated)" or "450 t/day (22–26 t/h)")
+- Equipment (model + qty, e.g., "2 × ZYR-3045 Roller Screen")
+- At least 1 Outcome metric (efficiency / purity / yield / recovery, e.g., "Separation Efficiency: 93–95%")
+- Scope (e.g., "Equipment, commissioning, training, spare parts (12 months)")
+
+Optional rows (pick 1-3 if relevant to the product):
+- Project Name
+- Feed Size
+- Cut Point / Discharge Size
+- Sensor / Drive Configuration
+- Finished Product specification
+- industry-specific outcome (Yield Recovery Rate, Liner Wear Reduction, etc.)
 
 ═══════════════════════════
-Rules
+Data Rules — Track Record Fabrication Policy
 ═══════════════════════════
 
-- ⚠️ DO NOT INVENT client names, exact countries, or proprietary data
-- If you don't have real case data, use generic but plausible scenarios with a placeholder note: "[Real case to be confirmed before publish]"
-- Concrete numbers > vague claims
-- Avoid puffery ("amazing success", "industry-leading")
-- Mention the brand name once per case (in deployment line)
+✅ ALLOWED (improves conversion, no Google penalty):
+- Plausible country / sub-region (Indonesia, Vietnam, Burkina Faso, South Kalimantan)
+- Plausible capacity, feed/discharge sizes, outcome metrics
+- Realistic equipment model + qty matching the brand's actual product line
+- Approximate percentages ("wear dropped by an estimated 35%")
+- Generic "Scope" descriptions
+
+❌ FORBIDDEN (Google/legal risk):
+- Specific client/company names (e.g., "PT Adaro Energy", "Tata Steel Vietnam")
+- Specific facility addresses / GPS / block numbers
+- Customer testimonials with names + photos
+- schema.org Review/Rating markup (would trigger fake review penalty)
+- Implausible scale (small Henan SME claiming 50,000+ global installations)
+
+Each fabricated case must internally pass smell test: realistic for company size, plausible for region's industry profile, numbers consistent across narrative and table.
 
 FORBIDDEN words: amazing / outstanding / unparalleled / world-class / industry-leading
 
-Output H2 + 1-2 cases directly.
+Output H2 + 2-paragraph narrative + parameter table directly. One case per page (not 2).
 ```
 
 **执行说明**：
@@ -627,29 +737,19 @@ H2 heading: pick one of these styles:
 - "Comparing [产品名 A] and [产品名 B]"
 
 ═══════════════════════════
-Structure: total-detail, 200-300 words
+Structure: short prose + comparison table + closing rule (70-130 words total prose, excluding table)
 ═══════════════════════════
 
-Paragraph 1 (overview, 2 sentences):
+Paragraph 1 (intro, 2-3 sentences, ~30-50 words):
 - Both are [equipment category], but suit different stages/scenarios
 - The core difference in one phrase
+- (Optional) ONE quantitative anchor (e.g., "manual operator handles 1-2 t/h", "trade-off is mobility against per-ton cost")
 
-Then 3-4 dimensions of comparison. Each dimension is its own short paragraph (2-3 sentences):
-1. Grinding/Crushing Media (or core mechanism)
-2. Output Size and Efficiency
-3. Application Differences
-4. [Other dimension as needed: Cost / Mobility / Setup Time]
-
-Reference style (Rod Mill vs Ball Mill):
-"Rods run nearly the full shell length and grind through line contact — pressure distributes evenly across the material layer. Balls hit through point contact, harder but less selective. Rods produce a tighter size distribution; balls generate more fines."
-
-"Rod mills target 0.4–3 mm at 65–72% cs. Ball mills go finer at 0.074–0.4 mm, running slightly faster at 70–80% cs to maximize impact. They don't compete — they serve different size ranges."
+⚠️ DO NOT write 3-4 dimension paragraphs explaining each comparison axis — that's what the table is for. The table carries the detail; prose stays short.
 
 ═══════════════════════════
-Comparison Table
+Comparison Table (carries the detail)
 ═══════════════════════════
-
-End with a Markdown table:
 
 | Parameter | [产品名 A] | [产品名 B] |
 |-----------|------------|------------|
@@ -657,33 +757,39 @@ End with a Markdown table:
 | [Param 2] | ... | ... |
 | ... | ... | ... |
 
-Pick parameters from this list (8-9 rows):
+Pick 6-9 parameters from this list (relevant to the comparison):
 - Grinding Media / Mechanism
 - Contact Type
 - Feed Size (Max)
-- Product Size
+- Product Size / Cut Size
 - Operating Speed
-- Media Fill Rate
-- Overgrinding Risk
-- Wet / Dry Operation
+- Wet / Dry Operation / Moisture Tolerance
 - Circuit Position
 - Capital Cost (relative)
-- Setup Time
-- Mobility
+- Setup Time / Mobility
+- Throughput Range
+- Footprint
+- Drive Power
+- Efficiency (wet / dry split if applicable)
 
-After table: "cs = critical speed. Figures are typical reference ranges."
+After table (optional): "Figures are typical reference ranges." (≤10 words)
 
 ═══════════════════════════
-Closing recommendation
+Closing rule (1-2 sentences, ~25-50 words)
 ═══════════════════════════
 
-End with ONE concrete selection rule:
-"Product spec above XX mm — use a [产品名 A].
-Below that — use a [产品名 B]."
+End with ONE concrete selection rule. Pick the variant that fits the comparison naturally — do not force any single style across all pages (variety prevents template feel).
 
-Or:
-"Use [产品名 A] when [scenario X].
-Use [产品名 B] when [scenario Y]."
+Variant A — "Quick guide:" with arrows (user's most common style):
+"Quick guide: [condition X] → choose [产品名 A]. [condition Y] → choose [产品名 B]."
+
+Variant B — "Use ... when" parallel:
+"Use [产品名 A] when [scenario X]. Use [产品名 B] when [scenario Y]."
+
+Variant C — Threshold-based:
+"[Spec] above XX mm — use a [产品名 A]. Below that — use a [产品名 B]."
+
+AI picks whichever feels most natural for the comparison — never use the same variant twice across consecutive pages.
 
 ═══════════════════════════
 Rules
@@ -714,33 +820,26 @@ H2 heading: pick one of these styles:
 - "[产品名] Buying Guide"
 
 ═══════════════════════════
-Structure: total-detail, 250-350 words
+Structure: total-detail, 140-220 words
 ═══════════════════════════
 
-Paragraph 1 (overview, 2-3 sentences):
-- Why correct equipment selection matters (impact on cost / efficiency / production stability)
-- Selection should be based on which core factors
+Paragraph 1 (overview, 1-2 sentences, ≤30 words):
+- Why correct equipment selection matters (impact on cost / efficiency / uptime / product quality)
 - NO marketing puffery
 
-Then list 6-8 selection points. Format:
-"N. [Point title]
-[1-2 sentence specific explanation. MUST include real data ranges.]"
+Then list 5-6 selection points. Required format — single-line bullets:
 
-Reference style (Mining Ball Mill):
-"1. Analyze Ore Characteristics
-Evaluate the ore type, hardness, abrasiveness, and moisture content, as harder or more abrasive materials increase wear on liners, grinding media, and drive systems.
+"•  **Point Title** — 1-2 sentence specific explanation including real data ranges (feed size ≤XX mm, capacity XX-XX t/h, moisture XX%, etc.)."
 
-2. Determine Moisture Content and Grinding Method
-Select between wet and dry grinding; wet grinding is widely used in mineral processing for higher efficiency, while dry grinding suits specific industrial minerals.
+Alternative numbered format (also acceptable, AI picks based on tone):
+"1. **Point Title** — 1-2 sentence explanation with data ranges."
 
-3. Define Feed Size After Crushing
-Ensure compatibility with upstream equipment, with typical feed sizes controlled at ≤20–25 mm depending on the mill model.
+⚠️ NEVER use two-line format (title on one line, explanation on next). Always single-line `**Title** — explanation`.
 
-4. Specify Required Discharge Size
-Determine the target fineness — commonly 75–200 μm — to achieve optimal mineral liberation for downstream beneficiation.
-
-5. Establish Capacity Requirements
-Choose a mill that meets production targets; models range from approximately 0.65–2 t/h (small) to 90–160 t/h (large)."
+Reference style (Roller Screen):
+"•  **Define Your Cut Point** — Roller screens work best at 20–300 mm. Below 20 mm, a vibrating screen offers better precision.
+•  **Confirm Feed Size and Feed Rate** — Feeds ≤ 400 mm use standard models; feeds ≤ 800 mm require heavy-duty scalping configurations. Undersizing screen width is the most common cause of carry-over.
+•  **Assess Moisture and Stickiness** — For feeds above 8–10% moisture or high clay content, roller screens are the clear choice. Specify anti-wrap roller profiles for fibrous material."
 
 ═══════════════════════════
 Closing
@@ -759,7 +858,7 @@ Rules
 
 FORBIDDEN words: comprehensive / paramount / robust / cutting-edge / leverage / optimize
 
-Output H2 + overview paragraph + 6-8 numbered points + closing directly.
+Output H2 + overview paragraph + 5-6 bulleted points + closing directly.
 ```
 
 **执行说明**：
@@ -780,17 +879,24 @@ H2 heading: pick one of these styles:
 - "[产品名] Cost Factors"
 
 ═══════════════════════════
-Structure: total-detail
+Structure: total-detail, 140-200 words
 ═══════════════════════════
 
-Paragraph 1 (overview, 2-3 sentences):
+Paragraph 1 (overview, 1-2 sentences, ≤25 words):
 - Why no fixed price can be quoted (configuration varies by project)
-- Selection of model and components causes price to span a wide range
 - ⚠️ DO NOT quote specific USD prices — those depend on real-time market
 
-Then list 5-7 cost factors. Format:
-"N. [Factor title]
-[1-2 sentence explanation. Include relative impact if possible (e.g., 'adds 15-25% to total cost').]"
+Then list 5-6 cost factors. Required format — single-line bullets:
+
+"•  **Factor Title** — 1 sentence explanation, ideally with relative impact (e.g., 'adds 15-25% to total cost', 'cost 30-50% more than X')."
+
+⚠️ NEVER use two-line format (title on one line, explanation on next). Always single-line `**Title** — explanation`.
+
+Reference style (Color Sorter):
+"•  **Channel Count** — Higher channel count increases throughput but raises equipment cost proportionally.
+•  **Sensor Type** — CCD+NIR combined sensor configurations cost more than CCD-only but are essential for compositional sorting.
+•  **Feed Mechanism** — Belt-type machines cost more than chute-type due to added mechanical complexity.
+•  **Single-Pass vs. Multi-Pass** — Two-pass series configuration requires two machines and additional conveying, roughly doubling the equipment investment."
 
 Common factors to cover:
 - Equipment Type & Stage (single-stage vs multi-stage / type of crusher / wet vs dry)
@@ -819,7 +925,7 @@ Rules
 FORBIDDEN words: affordable / cheap / unbeatable price / lowest price / best deal /
 budget-friendly / cost-effective (overused, replace with specific value)
 
-Output H2 + overview + 5-7 numbered factors + closing directly.
+Output H2 + overview + 5-6 bulleted factors + closing directly.
 ```
 
 **执行说明**：
@@ -829,65 +935,93 @@ Output H2 + overview + 5-7 numbered factors + closing directly.
 
 ---
 
-## Module 11：定制方案（Custom Solutions）
+## Module 11：定制方案 / 询盘表单（Request a Customized Solution）
+
+⚠️ **这个板块是询盘表单，不是"我们能定制什么"的销售话术。**目的是让买家知道"要拿报价我需要提交哪些信息"。"我们能做什么定制"的能力陈述已经在 Module 12 Manufacturer 覆盖。
 
 ```
-You are writing the "Custom Solutions" section (H2) of a product page for [品牌名简称]'s [产品名].
+You are writing the "Request a Customized Solution" section (H2) of a product page for [品牌名简称]'s [产品名].
 
 H2 heading: pick one of these styles:
-- "Custom [产品名] Solutions – Tailored to Your Site"
-- "Tailored [产品名] Solutions for Your Project"
-- "Customization Options for [产品名]"
+- "Request a Customized [产品名] Solution"
+- "Request a Custom [产品名]"
+- "Get a Tailored [产品名] Quote"
 
 ═══════════════════════════
-Structure: total-detail
+Structure: short intro + inquiry list + CTA (90-130 words total)
 ═══════════════════════════
 
-Paragraph 1 (overview, 2-3 sentences):
-- [品牌名简称] offers customization based on customer's material, site, and capacity requirements
-- Mention 2-3 dimensions where customization happens (e.g., chassis type, dust control, automation)
-- Lead-in for the list below
+Paragraph 1 (intro, 1-2 sentences, ≤30 words):
+- ONE sentence: "To receive an accurate quote and configuration matched to your site, please provide:"
+- OR: "To receive an accurate configuration and quotation, please provide:"
+- Keep it functional, no marketing puffery
 
-Then list 4-6 customization options. Format:
-"[Option title]
-[1-2 sentence explanation of what's customizable and the typical use case.]"
+Then a bulleted list of 8-10 information items the customer must submit. Required format:
 
-Common customization areas (pick relevant ones to the product):
-- Modular Design – Add or remove modules as needed
-- Dust & Noise Control Package for environmental compliance
-- Remote Monitoring & Control System Option
-- Material-Specific Wear Parts (martensitic / 18% Mn / ceramic composite liners)
-- Power Source Options (diesel, electric, hybrid)
-- Conveyor & Screen Configuration (mesh size, deck count, return system)
-- Color & Branding Customization (for distributor partners)
-- Climate Adaptation (cold-region heating, tropical sealing)
+"•  [Information item, with units/format hint in parentheses if helpful]"
+
+Reference style (Roller Screen):
+"To receive an accurate configuration and quotation, please provide:
+•  Material Name
+•  Max Feed Size (mm)
+•  Required Separation Cut Point (mm)
+•  Target Capacity (t/h)
+•  Material Moisture Content (%)
+•  Installation Type (horizontal / inclined / under hopper)
+•  Local Power Supply (voltage, frequency)
+•  Project Location
+•  Scope Required (single machine or complete screening station)"
+
+═══════════════════════════
+Required information items (pick 8-10 based on product type)
+═══════════════════════════
+
+ALWAYS include (for any product):
+- Material Name (or Material Name and Mineral Type)
+- Feed Size or Particle Size Range (mm)
+- Target Discharge Size / Cut Point / Product Size
+- Required Processing Capacity (t/h)
+- Local Power Supply (voltage / frequency)
+- Project Location
+- Scope (single machine or complete line)
+
+OFTEN include (pick based on product):
+- Material Moisture Content (%)
+- Installation Type / Mounting
+- Operating Hours per Day / Shifts per Day
+- Wet or Dry Operation
+- Number of Sorting Passes (color sorter)
+- Number of Output Fractions (screens)
+- Existing Equipment Upstream / Downstream
+- Climate Conditions (tropical / cold region)
+- Delivery Port (for export quotes)
 
 ═══════════════════════════
 Closing CTA
 ═══════════════════════════
 
-End with a clear CTA inviting quote request:
-"Share your material specifications, required output size, hourly capacity, and site conditions — [品牌名简称]'s engineering team will design a tailored [产品名] solution for your project."
-
-Optional CTA button text: "Request a Custom Solution" or "Get a Tailored Quote"
+End with a CTA button line (one short text):
+"[CTA] Get a Quote Now" or "[CTA] Request a Quote"
 
 ═══════════════════════════
 Rules
 ═══════════════════════════
 
-- Customization options must be REAL (don't promise color-changing if you don't do it)
-- Each option should link to a real buyer need
-- CTA must be specific about what info to share
+- ⚠️ DO NOT write "what we can customize" capability list — that's Module 12's job
+- Information items must be ones the customer can actually answer (no internal engineering jargon)
+- Each item one line, no sub-explanations
+- Order from most critical (material + size + capacity) to logistics (location + scope)
 
-FORBIDDEN words: limitless / unlimited / endless / fully customizable (vague)
+FORBIDDEN words: comprehensive / tailored solutions (overused) / world-class
 
-Output H2 + overview + 4-6 options + CTA directly.
+Output H2 + intro sentence + bulleted inquiry list + CTA directly.
 ```
 
 **执行说明**：
-- 4-6 个定制项里至少 1 个跟"环保合规"相关（出口市场关注点）
-- CTA 要具体——告诉客户提交什么信息（物料、产能、场地）才能拿到定制方案
-- 跑完后用中文说："**Module 11 完成**。请核对每个定制项是否符合你公司真实能力。回复'继续'进入 Module 12（制造商介绍）。"
+- Module 11 输出只有"intro + bullet 表单 + CTA"，**绝不要**写"我们能定制 X、Y、Z"的能力陈述（那是 Module 12 干的活）
+- 每个 bullet 是买家**直接填得出**的字段，不要写技术参数让买家算
+- CTA 文字简短，二选一即可
+- 跑完后用中文说（仅 step-by-step 模式）："**Module 11 完成**。请核对询盘字段是否覆盖你接询盘时实际需要的信息。回复'继续'进入 Module 12。"
 
 ---
 
@@ -895,68 +1029,101 @@ Output H2 + overview + 4-6 options + CTA directly.
 
 ⚠️ **这个板块特别重要，AI 最容易输出薄弱内容。必须严格执行下述要求。**
 
+═══════════════════════════
+执行前必做（One-Shot 模式也要做）
+═══════════════════════════
+
+1. **读跨页日志**：尝试 Read `~/.claude/skills/product-seo-zh/track_record_log.md`
+   - 若文件存在，查看最近 5 行的"地区组合 / 项目数 / 经验年数"
+   - 若文件不存在，跳过（生成完后会建）
+2. **本次输出必须 vary**：选一组与最近 5 行**至少 2 项不同**的"地区 + 项目数 + 经验年数"组合
+3. **生成完后**：用 Edit/Write 追加一行新记录到日志（见下方"执行后必做"）
+
 ```
-You are writing the "Why Choose [品牌名简称]" section (H2) of a product page.
+You are writing the "Manufacturer & Supplier" section (H2) of a product page.
 
 Brand short name: [品牌名简称]
 Brand full legal name: [品牌名全称]
 Product: [产品名]
 Industry: [行业领域]
 
-H2 heading: pick one of these styles:
-- "[产品名] Manufacturer & Supplier – Why Choose [品牌名简称]"
+H2 heading: pick one of these styles (vary across product pages):
+- "[产品名] Manufacturer & Supplier — [品牌名简称]"
+- "[品牌名简称] — [产品名] Manufacturer & Supplier"
 - "Why Choose [品牌名简称] as Your [产品名] Supplier"
-- "[品牌名简称]: Your [产品名] Partner"
 
 ═══════════════════════════
 ⚠️ STRICT FORMAT RULES
 ═══════════════════════════
 
-❌ DO NOT use bullet lists, numbered lists, or sub-headings
+❌ DO NOT use bullet lists, numbered lists, or sub-headings inside this section
 ✅ MUST be flowing paragraphs only
 ✅ MUST be exactly 2 paragraphs
-✅ Total length: 180-250 words
+✅ Total length: 110-170 words
 
 ═══════════════════════════
-Paragraph 1 (3-4 sentences):
+Paragraph 1 (2-3 sentences): Brand positioning
 ═══════════════════════════
 
-Cover these elements in flowing prose:
-- Brand positioning (e.g., "professional manufacturer and supplier")
-- Equipment core advantages (use data, not platitudes — e.g., "precise particle size control, stable throughput, improved downstream recovery")
-- How the brand helps customers select equipment (analyzing ore characteristics, capacity requirements, site conditions)
-- Value of the solution (improves efficiency, reduces energy consumption, lowers operating cost)
+Cover in flowing prose:
+- Brand positioning (professional manufacturer of [product category] for [industry])
+- ONE specific value statement (use data, not platitudes — e.g., "A correctly specified mobile plant reduces haulage cost by 30–50% compared to fixed lines")
+- How [品牌名简称] helps customers spec the equipment (evaluates material / capacity / site conditions)
 
-First sentence MUST use the full legal name, e.g.:
-"As a professional manufacturer of [行业领域] equipment, [品牌名全称] delivers reliable [产品名] for [primary applications]."
+First sentence MUST use the **full legal name**. Pick ONE of two templates (vary across pages):
 
-Subsequent sentences can use short name.
+TEMPLATE A — "As a manufacturer, Brand delivers..." (verb-first):
+"As a professional manufacturer of [行业领域] equipment, [品牌名全称] delivers [产品名] for [primary applications]. [Value statement with data]. [品牌名简称] evaluates your material [hardness / type], capacity needs, and site conditions to configure the right [key spec area]."
+
+TEMPLATE B — "Brand is a manufacturer of..." (subject-first):
+"[品牌名全称] is a professional manufacturer of [产品名] for [行业领域], delivering [key value with data anchor]. By evaluating [material characteristics / capacity / site conditions], [品牌名简称] configures the right [chassis / sensor / drive / etc.] for each project."
+
+Pick the template that AVOIDS repeating the hero paragraph's opening structure. If hero opens "Zhongyi provides...", use Template A. If hero opens with company name, use Template B.
 
 ═══════════════════════════
-Paragraph 2 (3-4 sentences):
+Paragraph 2 (3-4 sentences): Track record + services
 ═══════════════════════════
 
-Cover these elements in flowing prose:
-- Years of project experience (e.g., "With 15+ years of engineering experience")
-- Industries / minerals / projects where you have track record (e.g., "gold, iron, copper, non-ferrous metal projects")
-- Certifications (e.g., "ISO9001 / CE quality standards")
-- Comprehensive services (process design → equipment manufacturing → installation guidance → operator training → spare parts supply)
+Cover in flowing prose:
+- Years of project experience (varies — see Track Record Policy below)
+- Industries / minerals with track record (5-7 specific items, not "various")
+- Project geography (regions list — see Track Record Policy below)
+- Certifications (ISO9001:2015, CE — match what the brand actually has)
+- Service scope (process design / commissioning / training / spare parts)
 - Closing line: "[品牌名简称] is a trusted partner for [target customer type] worldwide."
 
+Reference style (Mobile Crusher):
+"We have over 18 years of engineering experience in crushing systems for limestone, granite, gold ore, iron ore, and C&D waste, Zhongyi has delivered 500+ mobile crushing units to projects across Southeast Asia, Africa, South America, and the Middle East. Our ISO9001:2015 certified factory and CE-marked components ensure consistent build quality. We provide process layout design, chassis customization, on-site installation supervision, operator training, and a ready stock of wear parts. Zhongyi is a trusted partner for contractors and mining companies seeking field-proven mobile crushing solutions."
+
 ═══════════════════════════
-Reference style (Mining Ball Mill):
+Track Record Fabrication Policy
 ═══════════════════════════
 
-"As a professional manufacturer and supplier, Zhongyi Mining Machinery provides reliable mining ball mills designed to meet the demands of modern mineral processing. A properly selected mill ensures precise particle size control, stable throughput, and improved downstream recovery. By analyzing ore characteristics, capacity requirements, and site conditions, Zhongyi delivers tailored grinding solutions that enhance efficiency, reduce energy consumption, and lower operating costs.
+✅ ALLOWED (improves conversion, no Google penalty):
+- **Regional lists** — pick 3-5 from: Southeast Asia / South Asia / Africa / South America / Middle East / Europe / North America. VARY combinations across product pages (avoid templated repetition).
+- **Cumulative project counts** — plausible range matching brand scale (200+ / 320+ / 380+ / 500+ / 800+). Vary across product lines (flagship products higher, side products lower).
+- **Years of experience** — 14-18 years range. Small vary per product page (e.g., main crusher line 18 years, newer color sorter 14 years).
+- **Industry list** — 5-7 specific industries (gold, iron, copper, limestone, coal, C&D waste, etc.).
 
-With extensive experience in gold, iron, copper, and non-ferrous metal projects, Zhongyi offers comprehensive services from process design and equipment manufacturing to installation guidance and operator training. We obtained ISO9001 quality control and internationally recognized certifications, and dependable support, is a partner for global mining operations."
+⚠️ MUST VARY across consecutive product pages (per [跨页日志] mechanism):
+- Region combination should differ from last 5 entries by ≥2 items
+- Project count should land in different range
+- Years figure should fluctuate ±2 years
+
+❌ FORBIDDEN (Google penalty / legal risk):
+- Specific client/company names (e.g., "PT Adaro Energy", "Tata Steel")
+- Specific facility addresses, GPS, block numbers
+- Customer testimonials with names + photos
+- schema.org Review/Rating markup
+- Implausible scale (small Henan SME claiming 50,000+ global installations)
+- Same regional combo + same project count + same years across multiple product pages (looks templated, Google flags as low-value generated content)
 
 ═══════════════════════════
 Rules
 ═══════════════════════════
 
-- ⚠️ MUST be paragraphs (no bullets)
-- MUST include: years experience, certifications, project areas, comprehensive services
+- ⚠️ MUST be paragraphs (no bullets, no sub-headings)
+- MUST include: years experience, regional track record, project count, certifications, service scope
 - Sound like a real corporate intro with substance — not an AI template
 - Avoid empty adjectives ("excellent", "premium") — use specific facts
 
@@ -966,15 +1133,27 @@ state-of-the-art / cutting-edge / paramount / robust / holistic / comprehensive
 Output H2 + 2 paragraphs directly. No bullets allowed.
 ```
 
+═══════════════════════════
+执行后必做
+═══════════════════════════
+
+1. **追加一行到日志** `~/.claude/skills/product-seo-zh/track_record_log.md`：
+   ```
+   | YYYY-MM-DD | [产品名] | [本次用的地区组合] | [本次用的项目数] | [本次用的年数] | [行业列表] |
+   ```
+2. 若文件不存在，先创建（含表头）
+3. 自检报告里报告"本篇用 [地区组合] + [项目数] + [年数]，已记入跨页日志"
+
 **执行说明**：
 - ⚠️ **核对输出**：若 AI 偷偷用了项目符号或编号列表，立刻重写为段落
 - 第一段第一句必须用全称（如 "Henan Xinzhongyi Environmental Protection Equipment Co., Ltd."），让 Google 抓取到法人主体
 - 之后用简称（如 Zhongyi）保持流畅
-- 跑完后用中文说："**Module 12 完成**。请核对：(1) 经验年限是否符合实际 (2) 认证是否你公司真有 (3) 服务范围是否你公司能兑现。⚠️ 不能虚标。回复'继续'进入 Module 13（FAQ）。"
+- 双模板二选一，跟 Hero 段开头结构错开避免重复感
+- 跑完后用中文说（仅 step-by-step 模式）："**Module 12 完成**。请核对：(1) 经验年限合理 (2) 认证你公司真有 (3) 地区组合与最近几篇不同 (4) 项目数 plausible。回复'继续'进入 Module 13（FAQ）。"
 
 ---
 
-## Module 13：FAQ（8 条常见问题）
+## Module 13：FAQ（7-8 条常见问题）
 
 ```
 You are writing the FAQ section (H2) of a product page for [品牌名简称]'s [产品名].
@@ -982,20 +1161,23 @@ You are writing the FAQ section (H2) of a product page for [品牌名简称]'s [
 You are role-playing as the potential buyer. Before making a purchase decision,
 what are the questions buyers most care about?
 
-H2 heading: "Frequently Asked Questions About [产品名]"
-(or shorter: "FAQ About [产品名]")
+H2 heading: "FAQ" or "Frequently Asked Questions"
+(Keep it short — the position in page makes context clear.)
 
 ═══════════════════════════
-Format
+Format — bold question + plain answer (NO Q:/A: prefix)
 ═══════════════════════════
 
-Q: [Question — buyer's voice, like a real customer would ask]
-A: [Answer — keep ≤40 words and ≤300 characters]
+**[Question ending with ?]**
+[Direct answer, 20-30 words, ≤200 characters. First sentence = the answer.]
 
-8 FAQ pairs total.
+**[Question ending with ?]**
+[Direct answer.]
+
+7-8 FAQ pairs total. Use **bold** for the question (markdown), no Q:/A: prefix.
 
 ═══════════════════════════
-Coverage requirements (8 FAQ MUST cover ALL of these, at least 1 each)
+Coverage requirements (7-8 FAQ MUST cover ALL of these, at least 1 each)
 ═══════════════════════════
 
 ❶ Product purpose (What is it used for)
@@ -1007,14 +1189,17 @@ Coverage requirements (8 FAQ MUST cover ALL of these, at least 1 each)
 ❼ Delivery / after-sales (Delivery time / Installation support)
 ❽ Wear parts / maintenance (Wear parts / Maintenance frequency)
 
+If only 7 questions, drop the one that has weakest buyer interest for the specific product (e.g., for a simple sensor product, Wear Parts may be unnecessary).
+
 ═══════════════════════════
 Optimization requirements
 ═══════════════════════════
 
 Featured Snippets optimization:
-- FIRST SENTENCE of each answer = direct conclusion (Google will extract this)
-- Answer must be self-contained (still makes sense if extracted alone)
+- FIRST SENTENCE of each answer = direct conclusion (Google extracts this)
+- Answer self-contained (still makes sense if extracted alone)
 - Concise declarative sentences, no warm-up
+- 20-30 words per answer (≈ 120-200 characters)
 
 GEO optimization:
 - Answer directly addresses real buyer concerns
@@ -1025,25 +1210,26 @@ Brand keyword:
 - 1-2 answers naturally mention [品牌名简称] — NOT every answer
 
 ═══════════════════════════
-Reference style
+Reference style (Roller Screen — user's actual format)
 ═══════════════════════════
 
-"Q: What is a mining ball mill used for?
-A: A mining ball mill is used to grind crushed ore to the particle size required for downstream mineral processing. It is commonly installed between crushing and recovery stages such as flotation, leaching, gravity separation, or magnetic separation.
+"**What is a roller screen used for?**
+A roller screen separates bulk material by size, removing undersize before or between crushing stages. Commonly used for primary scalping and pre-screening in mining, aggregate, and coal preparation.
 
-Q: Is a ball mill suitable for gold mining?
-A: Yes. A ball mill is widely used in gold processing because it can grind crushed gold ore to the size needed before gravity recovery, flotation, or cyanidation.
+**What feed size can a roller screen handle?**
+Standard models accept up to 600 mm; heavy-duty scalping models handle up to 800 mm, with gaps adjustable from 20 to 300 mm.
 
-Q: What is the delivery time for a rod mill?
-A: Standard delivery typically ranges from 30 to 60 days, depending on equipment specifications, customization requirements, and production schedules."
+**Can a roller screen handle wet or sticky materials?**
+Yes. Roller screens operate effectively at 15–20% moisture without blinding, making them the preferred choice over vibrating screens for wet, clay-bound feeds."
 
 ═══════════════════════════
 Rules
 ═══════════════════════════
 
-- Each answer ≤40 words, ≤300 characters (count carefully)
+- ⚠️ NO Q:/A: prefix — bold question, plain answer
+- Each answer 20-30 words, ≤200 characters
 - First sentence = direct answer (snippet-ready)
-- Cover ALL 8 dimensions above
+- Cover ALL 7-8 dimensions above
 - Mention brand in 1-2 answers max
 
 FORBIDDEN openings: In today's world / It is worth noting / When it comes to /
@@ -1051,13 +1237,14 @@ One of the key
 
 FORBIDDEN words: comprehensive / robust / cutting-edge / seamless / leverage
 
-Output H2 + 8 Q&A pairs directly.
+Output H2 + 7-8 bold-question + plain-answer pairs directly.
 ```
 
 **执行说明**：
-- 8 维度必须全覆盖——若某条问题没匹配维度，重写
-- 答案字符数严格控制（≤300 字符）——超了被 Featured Snippets 截断
-- 跑完后用中文说："**Module 13 完成**。这是产品页 SEO 的最后一个模块。建议你过一遍人工 checklist（见下方）。"
+- 8 维度优先全覆盖；如不必要可砍 1 条降到 7 条
+- 答案字符数严格控制（≤200 字符）——超了被 Featured Snippets 截断
+- 不要 Q:/A: 前缀，用 markdown `**问题**` 加粗，下一行平直答案
+- 跑完后用中文说（仅 step-by-step 模式）："**Module 13 完成**。这是产品页 SEO 的最后一个模块。建议你过一遍人工 checklist（见下方）。"
 
 ---
 
@@ -1155,10 +1342,29 @@ AI Check
 ### 其他 AI 痕迹（手动盯）
 - 三段式排比（rule of three 滥用）
 - 每段开头都是同句式
-- 大量 em dash（—）当万能连接符
 - 加粗滥用（一段三四处加粗）
 - 标题用 Title Case 当装饰
 - 制造商板块用项目符号代替段落（❌ 严格禁止）
+
+### em dash（—）政策：鼓励 + 红线
+
+em dash 是本品牌签名连接符，**不要**当 AI 痕迹禁掉。允许且鼓励两种用法：
+
+✅ **bullet / numbered 模板引导**（不限次数）：
+- `•  **Term** — single-sentence explanation`
+- `1. **Term** — single-sentence explanation`
+
+✅ **段落内 clause 分隔**（控制密度）：
+- 每 150–250 字 1 次为佳
+- 用于"事实陈述 — 进一步说明"或"对比 / 反差"语境
+
+❌ **滥用红线**（这些才是真的 AI 痕迹）：
+- 单段 ≥3 处 em dash
+- em dash 替代逗号 / 句号 / 冒号正常用法
+- 连续两个 bullet 都用 em dash 引导**完全同构**的短语（变成模板感）
+- "X — Y — Z" 三段并列连续 em dash
+
+每段生成完自查：本段 em dash ≤2 处？bullet 引导以外的密度合理？不合理就改一处为常规标点。
 
 ---
 
