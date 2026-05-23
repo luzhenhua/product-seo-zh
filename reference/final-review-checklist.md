@@ -30,9 +30,35 @@ Body sections
 □ How it Works: 4-step process flow correct
 □ Specifications table: data realistic (SEO 服务商场景 = plausibility check / 厂家自写场景 = MUST VERIFY against product manual)
 □ Applications: covers your real customer industries
+□ **Project Case (if included)**: SEO 服务商场景 = 虚构脱敏，国家+区域级地点 + 通用客户描述 + 无公司名/无城市/无 testimonial / 厂家自写场景 = MUST REPLACE with real project data
+□ **Project Case 5 项 plausibility check**（SEO 服务商场景必查）: 行业-区域匹配 / 数据内部一致 / 差异化角度落地 / 不撞竞品已发布案例 / 数据在 ±20% 行业基准内
 □ Selection Guide: 6-8 points with practical data
 □ Price Factors: NO specific USD prices given
 □ Custom Solutions: every customization option is real (you can deliver)
+
+Word-count Hard Caps (see writing-consistency.md, **全文 ≤2,000 词；含表格 Module = 正文 + 全部表格单元格**)
+□ 全文 ≤2,000 词（boss 红线）
+□ Module 1 Hero ≤55 (短) / ≤110 (长)
+□ Module 2 What Is ≤180
+□ Module 3 How Works ≤180
+□ Module 4 Types ≤180 (prose + table cells)
+□ Module 5 Specs ≤180 (disclaimer/intro + all table cells)
+□ Module 6 Applications ≤250
+□ Module 7 Project Case ≤230 (narrative + table cells)
+□ Module 8 vs ≤170 (prose + table cells)
+□ Module 9 Selection ≤220
+□ Module 10 Price ≤200
+□ Module 11 Custom ≤130
+□ Module 12 Manufacturer ≤170
+□ Module 13 FAQ each answer ≤30 / total ≤240
+□ Any ❌ → rewrite the module, do NOT exempt
+
+Style Consistency (see writing-consistency.md)
+□ Bullet length 跨 Module 在 ±30% 区间
+□ 段落长度跨 Module 在 ±25% 区间
+□ 数据密度 ≥4 个/100 词
+□ 数字区间表示全篇统一 (en dash 或 hyphen)
+□ 单位表示全篇统一 (如 kcal/kg)
 
 Manufacturer section
 □ 2 paragraphs (NOT bullet lists)

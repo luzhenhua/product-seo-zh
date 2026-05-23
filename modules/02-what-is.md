@@ -53,6 +53,11 @@ Rules
 FORBIDDEN words: comprehensive / crucial / paramount / robust / cutting-edge /
 delve into / game-changer / holistic / leverage / revolutionize
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **180 words** total (prose + bullets)
+- Over cap → rewrite, do NOT exempt for "differentiation angle is complex"
+- If data does not fit → move to a table in Module 5, do not expand the paragraph
+
 Output the H2 + body content directly. No meta-commentary.
 ```
 

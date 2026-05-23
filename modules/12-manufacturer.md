@@ -104,6 +104,12 @@ Rules
 FORBIDDEN words: world-class / industry-leading / unparalleled / top-tier /
 state-of-the-art / cutting-edge / paramount / robust / holistic / comprehensive
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **170 words total** (2 paragraphs)
+- First paragraph ~70 words (positioning); second ~100 words (track record + service)
+- Over cap → cut the weakest sentence; do NOT exempt for "multi-material coverage requires longer scope"
+- All certifications, regional lists, and service scope fit within cap by trimming adjectives and merging clauses, NOT by adding sentences
+
 Output H2 + 2 paragraphs directly. No bullets allowed.
 ```
 

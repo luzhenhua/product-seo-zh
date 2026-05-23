@@ -65,6 +65,13 @@ Rules
 - Numbers must look credible (not perfectly round)
 - Model names follow real industry convention
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **180 words total** = 30 prose (disclaimer + optional matrix-table intro) + 150 table budget
+- Counts ALL: every table header + every cell + disclaimer + intro
+- If single main spec table only → ~70 words table budget + ≤110 words spare for prose
+- If main spec table + differentiation matrix table → main ~70 + matrix ~80 + prose 30 = 180
+- If matrix table exceeds 80 → trim main spec rows from 7 to 5-6, NOT expand prose
+
 Output the H2 + table + disclaimer directly. No extra prose.
 ```
 

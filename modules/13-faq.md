@@ -82,6 +82,11 @@ One of the key
 
 FORBIDDEN words: comprehensive / robust / cutting-edge / seamless / leverage
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Each answer ≤30 words / ≤200 chars
+- Total FAQ ≤240 words (8 × 30)
+- Over cap → trim adjectives or merge clauses; do NOT exempt for "data density"
+
 Output H2 + 7-8 bold-question + plain-answer pairs directly.
 ```
 

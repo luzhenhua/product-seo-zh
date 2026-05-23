@@ -45,6 +45,12 @@ Rules
 
 FORBIDDEN words: various / numerous / many / a lot of / comprehensive / wide range of
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **250 words** (prose + bullets)
+- Each application bullet stays ONE sentence + ONE quantified data point
+- Recommended 5-7 applications (NOT 8+)
+- Over cap → cut weakest application or trim bullets to 1 short sentence, do NOT exceed
+
 Output the H2 + overview + application list directly.
 ```
 

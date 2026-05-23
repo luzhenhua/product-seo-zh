@@ -180,6 +180,14 @@ Output directly. No meta-commentary.
 ```
 
 ═══════════════════════════
+**字数硬上限**（见 [reference/writing-consistency.md](../reference/writing-consistency.md)）
+═══════════════════════════
+
+- 短版本 paragraph + bullets 总：硬上限 **55 词**
+- 长版本 paragraph + bullets 总：硬上限 **110 词**
+- 超出立即重写；数据塞不下 → 减 bullet 数量，不要扩段落
+
+═══════════════════════════
 **执行说明**
 ═══════════════════════════
 

@@ -14,21 +14,30 @@
 - 与最近 N 篇产品页的不同点：[简要说明]
 
 📊 字数统计
-- 全文字数：XXXX 字（预算 1,300–1,500 ✅/⚠️/❌；上限 1,700）
-- 各模块字数：
-  Module 1 Hero: XX 字 (短版本目标 40–55 / 长版本 70–105)
-  Module 2 What Is: XXX 字 (目标 140–180)
-  Module 3 How Works: XXX 字 (目标 140–180)
-  Module 4 Types: XXX 字 (目标 100–150)
-  Module 5 Specs: 表格 + XX 字 disclaimer
-  Module 6 Applications: XXX 字 (目标 200–250 / 6–8 项)
-  Module 7 Project Case: XXX 字 + parameter table (目标 130–200)
-  Module 8 vs: XX 字散文 + 表 (目标 70–130)
-  Module 9 How to Choose: XXX 字 (目标 140–220 / 5–6 项)
-  Module 10 Price: XXX 字 (目标 140–200 / 5–6 项)
-  Module 11 Custom: XX 字 + inquiry form (目标 90–130)
-  Module 12 Manufacturer: XXX 字 (目标 110–170)
-  Module 13 FAQ: 7–8 × 20–30 字 ≈ XXX 字
+- 全文字数：XXXX 字（**boss 红线 ≤2,000 词**；含 Module 7 或 8 → ≤2,100；全跑 → ≤2,200 不推荐）
+- 各模块字数 + **硬上限检查**（见 [writing-consistency.md](writing-consistency.md)，**含表格 Module 字数 = 正文 + 全部表格单元格**）：
+  Module 1 Hero: XX 字 / 硬上限 55 (短) / 110 (长) [✅/❌]
+  Module 2 What Is: XXX 字 / 硬上限 180 [✅/❌]
+  Module 3 How Works: XXX 字 / 硬上限 180 [✅/❌]
+  Module 4 Types: XXX 字（正文 + 表格）/ 硬上限 180 [✅/❌]
+  Module 5 Specs: XXX 字（prose + 主表 + 可选矩阵表全部单元格）/ 硬上限 180 [✅/❌]
+  Module 6 Applications: XXX 字 / 硬上限 250 [✅/❌]
+  Module 7 Project Case: XXX 字（叙述 + 参数表全部单元格）/ 硬上限 230 [✅/❌]
+  Module 8 vs: XX 字（散文 + 对比表全部单元格）/ 硬上限 170 [✅/❌]
+  Module 9 How to Choose: XXX 字 / 硬上限 220 [✅/❌]
+  Module 10 Price: XXX 字 / 硬上限 200 [✅/❌]
+  Module 11 Custom: XX 字 / 硬上限 130（含询盘表 bullet）[✅/❌]
+  Module 12 Manufacturer: XXX 字 / 硬上限 170 [✅/❌]
+  Module 13 FAQ: XXX 字总 / 硬上限 240（每答 ≤30 词）[✅/❌]
+- **任何 ❌ → 必须重写该 Module**，不允许豁免
+- **全文 > 2,000 词 → 必须裁**，按各模块 -10% 同步压缩
+
+🎨 风格一致性检查（见 [writing-consistency.md](writing-consistency.md)）
+- bullet 平均长度跨 Module 是否在 ±30% 区间：✅/⚠️/❌
+- 段落平均长度跨 Module 是否在 ±25% 区间：✅/⚠️/❌
+- 数据密度：每 100 词含具体数据点数（目标 ≥4）：X.X 个
+- 数字区间表示全篇统一（en dash "–" vs hyphen "-"）：✅/❌
+- 单位表示全篇统一（如 kcal/kg）：✅/❌
 
 🔍 品牌词频率检查（领导反馈重点）
 - Hero Paragraph 品牌词次数：X / 1 （✅ 0-1 / ❌ ≥2）
@@ -39,13 +48,13 @@
 
 **默认场景（SEO 服务商代写）**：
 - Module 5 参数表：plausibility check — 看是否有明显造假（如小厂 1,000 t/h 微型机），无明显问题可直接发布
-- Module 7 案例：地点 + 数据为合理示例，发布前可替换为真实项目（可选）
+- Module 7 案例：**虚构脱敏案例已通过 5 项 plausibility self-check**（行业-区域匹配 / 数据内部一致 / 差异化角度落地 / 不与竞品已发布案例冲突 / 数据在 ±20% 行业基准内）。地点用国家+区域级（如 "northern India"），客户描述通用化（如 "a cement plant operator"），无具体公司名/城市/testimonial。可直接发布；若发布前有客户真实项目数据，可替换。
 - Module 12 Manufacturer：本篇用 [地区组合] + "XXX+ units" + "XX+ years experience" + [差异化角度]，已记入跨页日志（状态：⚠️ 草稿待审）
 - Module 13 FAQ：数据与 Module 5 表是否一致
 
 **厂家自写场景（用户在阶段 0.5 选了"品牌方"）**：
 - Module 5 参数表：⚠️ MUST VERIFY — 必须对照贵司真实产品手册逐行核对
-- Module 7 案例：⚠️ MUST REPLACE — 项目地点和数据必须替换为真实项目
+- Module 7 案例：⚠️ MUST REPLACE — 项目地点和数据必须替换为真实项目（叙述模板可保留，数字必须替换）
 - Module 12 Manufacturer：⚠️ 经验年数、项目数、认证必须真实
 - Module 13 FAQ：数据必须与 Module 5 + 真实产品手册一致
 

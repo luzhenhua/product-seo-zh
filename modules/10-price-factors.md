@@ -55,6 +55,11 @@ Rules
 FORBIDDEN words: affordable / cheap / unbeatable price / lowest price / best deal /
 budget-friendly / cost-effective (overused, replace with specific value)
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **200 words** (prose + bullets)
+- Each price factor: ONE bullet with ONE relative-impact data point (%, ×, +N days)
+- Over cap → drop the weakest factor, do NOT expand bullets to 2 sentences
+
 Output H2 + overview + 5-6 bulleted factors + closing directly.
 ```
 

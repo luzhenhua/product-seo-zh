@@ -54,6 +54,12 @@ Rules
 
 FORBIDDEN words: comprehensive / paramount / robust / cutting-edge / leverage / optimize
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **220 words** (prose + bullets)
+- Each selection point: ONE bullet, 1-2 sentences with ONE data range
+- If you have a capacity-tier / material-tier decision tree → use a TABLE in Module 5, not 4+ long bullets here
+- Over cap → cut the weakest selection point; do NOT exempt for "decision tree is complex"
+
 Output H2 + overview paragraph + 5-6 bulleted points + closing directly.
 ```
 

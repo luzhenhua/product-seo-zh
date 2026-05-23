@@ -74,6 +74,12 @@ Rules
 - Real data in every dimension
 - Closing rule must be actionable, not vague
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **170 words total** = 110 prose (intro + closing rule) + 60 comparison table
+- Counts ALL: prose + closing rule + table header + every table cell
+- Recommended table: 6-9 rows × 3 columns ≈ 60 words
+- If table exceeds 9 rows → trim least-discriminating parameter, NOT expand prose
+
 Output H2 + paragraphs + table + closing directly.
 ```
 

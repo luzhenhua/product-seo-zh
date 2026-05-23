@@ -22,7 +22,9 @@
 | 模块 / 参考文档 | 默认场景（SEO 服务商）| 厂家自写场景 |
 |---|---|---|
 | Module 5 Specs 参数 | 行业合理范围，避开 1,000 t/h 小型柴油机这类明显造假 | 必须对照产品手册逐行核对 |
-| Module 7 Project Case | 项目地点 + 数据用合理示例 | 必须用真实项目数据 |
+| Module 7 Project Case | **可虚构案例**，按 [modules/07-project-case.md](../modules/07-project-case.md) 的脱敏模板 + 红线清单 + 5 项 plausibility self-check | 必须用真实项目数据 |
+| Module 7 案例地点 | 国家 + 区域级（"northern India" / "southern Peru" / "eastern Gulf"），禁城市/地址 | 可用真实地点（若客户授权）|
+| Module 7 客户描述 | 行业 + 规模通用化（"a cement plant operator" / "a 1,200 t/d lime line"），禁公司名 | 可用真实客户类型（匿名化仍推荐）|
 | Module 12 Manufacturer 经验年数 | plausible 14–19 年区间 vary | 真实年数 |
 | Module 12 认证清单 | ISO9001:2015 + CE 默认（出口厂常见组合）| 真实认证清单 |
 | `self-check-report.md` 待核对部分 | "如有手册请核对（可选）"——不强求 | "⚠️ MUST VERIFY against manual"——必须 |
@@ -56,6 +58,7 @@
 ## 何时应用本规则
 
 - 阶段 0.5 收齐变量后：对照本表确认默认行为
-- 生成 Module 5 / Module 12 时：根据用户身份调整数据严谨度
+- 生成 Module 5 / Module 7 / Module 12 时：根据用户身份调整数据严谨度
+- 生成 Module 7 时：SEO 服务商场景必跑 5 项 plausibility self-check（见 [modules/07-project-case.md](../modules/07-project-case.md)）
 - 生成 `modules/01-hero.md` 时：根据 Hero UI 容量选择短/长版本
 - 输出 `self-check-report.md` + `final-review-checklist.md` 时：根据用户身份套用对应文案

@@ -55,6 +55,12 @@ Rules
 
 FORBIDDEN words: comprehensive / robust / cutting-edge / seamless / innovative
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **180 words total** = 150 prose/bullets + 30 table budget
+- Counts ALL: prose + bullets + table header + every table cell
+- Recommended table: 3-4 rows × 4-5 columns (small comparison table)
+- If table grows larger → recount actual table words; if still over → cut a column rather than expanding prose
+
 Output the H2 + body + table directly.
 ```
 

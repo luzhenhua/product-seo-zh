@@ -20,8 +20,10 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 7. **数据具体化** — 写到"很多 / 高效 / 大量"这类模糊词时，强迫自己换成具体数字（feed size ≤XX mm、capacity XX-XX t/h、power XX-XX kW）
 8. **AI 产出 = 草稿，不是终稿** — 每一模块产出后明确告诉用户："这是 AI 草稿，发布前请人工核对数据真实性"
 9. **品牌名首次用全称、之后用简称** — 阶段 0.5 收集时同时问全称（如 "Henan Xinzhongyi Environmental Protection Equipment Co., Ltd."）和简称（如 "Zhongyi"）
-10. **全文总字数预算 1,300–1,500 字**（不含表格、不含 TDK head 部分）—— 每模块优先按目标下限走，宁短不长；累计 > 1,400 字后续模块走下限；上限 1,700 字超出必须裁。多数出口品牌站的产品页 UI 装不下更长内容
+10. **全文总字数 ≤2,000 词（boss 红线）** —— 含表格全部单元格 + 正文 + bullet 全计入。跳 Module 7+8 必跑 ~1,985 词刚好；加 Module 7 或 8 → 其他模块需同步压缩至 ≤2,100 总。多数出口品牌站的产品页 UI 装不下更长内容
 11. **默认一次性出整篇（One-Shot）** —— 用户在阶段 0.5 后选"一次性"或不指定，AI 静默推进所有 Module 至完成；用户明确说"分模块跑"才走原来的逐模块审批流；跑完输出自检报告（字数 + 各模块达标 + 编造数据警示）
+12. **⭐ 每 Module 字数硬上限（零例外）** —— 每个 Module 的硬上限按 2,000 总预算反推（见 [reference/writing-consistency.md](reference/writing-consistency.md)）。含表格 Module 计入全部表格单元格。差异化角度复杂不豁免；超出立即重写。"差异化深度 ≠ 段落长度"——深度由数据密度（每 100 词 ≥4 个数据点）决定
+13. **⭐ 跨 Module 风格一致性** —— 整篇产品页应该读起来像一个工程师从头写到尾。bullet 长度、段落节奏、数据呈现方式、单位写法跨 Module 应该一致。Module 0 跑完必输出"风格基线"让后续锚定
 
 ## 触发本 skill 时立即做的事
 
@@ -215,7 +217,7 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 | 12 | Manufacturer（制造商介绍） | [modules/12-manufacturer.md](modules/12-manufacturer.md) | ✅ 必跑 | "制造商 / manufacturer / why choose" |
 | 13 | FAQ（常见问题） | [modules/13-faq.md](modules/13-faq.md) | ✅ 必跑 | "FAQ / 常见问题" |
 
-整套跑默认包含所有 ✅，跳过所有 ⚪。如果用户产品适合做对比 / 有真实案例，可以问用户要不要加上。
+整套跑默认包含所有 ✅，跳过所有 ⚪。Module 7 Project Case 现在两种用户场景都能跑（SEO 服务商按脱敏虚构模板 + 5 项 plausibility check / 厂家自写用真实数据），整套跑里可问用户要不要加。
 
 **执行顺序**：阶段 0.5 → 阶段 0.7 → Module 0 → 1 → 2 → 3 → (4) → 5 → 6 → (7) → (8) → 9 → 10 → 11 → 12 → 13 → 自检报告。括号 = 按需可跳。
 
@@ -225,10 +227,11 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 
 | 文档 | 用途 | 何时读 |
 |------|------|------|
-| [reference/user-context.md](reference/user-context.md) | 用户身份判定（SEO 服务商 / 厂家自写）+ Hero UI 容量 + 对应规则调整 | 阶段 0.5 收集"可选变量"时；不确定默认 SEO 服务商 + 短 Hero |
+| [reference/user-context.md](reference/user-context.md) | 用户身份判定（SEO 服务商 / 厂家自写）+ Hero UI 容量 + Module 7 双场景规则 | 阶段 0.5 收集"可选变量"时；不确定默认 SEO 服务商 + 短 Hero |
+| [reference/writing-consistency.md](reference/writing-consistency.md) | 字数硬上限 +15% 规则 + 跨 Module 风格一致性（bullet 长度 / 段落节奏 / 数据呈现 / 表格 vs bullet 偏好） | Module 0 跑完输出"风格基线"时；每个 Module 写完自检字数和风格时；自检报告输出时 |
 | [reference/forbidden-words.md](reference/forbidden-words.md) | 全局禁用词库 + em dash 政策 | 每模块生成完段落自检时；写新 Module 前过一遍 |
-| [reference/self-check-report.md](reference/self-check-report.md) | One-Shot 模式自检报告模板 | 整套跑完后输出报告时 |
-| [reference/final-review-checklist.md](reference/final-review-checklist.md) | 整套跑完后的人工终审清单 | 自检报告之后给用户的最终核对清单 |
+| [reference/self-check-report.md](reference/self-check-report.md) | One-Shot 模式自检报告模板（含字数硬上限 ✅/❌ 检查 + 风格一致性 + Module 7 虚构案例 plausibility 报告） | 整套跑完后输出报告时 |
+| [reference/final-review-checklist.md](reference/final-review-checklist.md) | 整套跑完后的人工终审清单（含字数硬上限清单 + 风格一致性 + Module 7 SEO/厂家场景区分） | 自检报告之后给用户的最终核对清单 |
 
 ---
 

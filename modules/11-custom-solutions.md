@@ -77,6 +77,10 @@ Rules
 
 FORBIDDEN words: comprehensive / tailored solutions (overused) / world-class
 
+**Word-count hard cap (see [reference/writing-consistency.md](../reference/writing-consistency.md)):**
+- Hard cap **130 words total** (intro + inquiry form bullets)
+- Intro stays ONE sentence; bullets are one-liners (no sub-explanations)
+
 Output H2 + intro sentence + bulleted inquiry list + CTA directly.
 ```
 
