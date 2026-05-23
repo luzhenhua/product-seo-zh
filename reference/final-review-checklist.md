@@ -13,10 +13,10 @@ TDK
 
 Hero
 □ H1 direct, no warm-up
-□ Hero paragraph 3-4 sentences following 定义→特点→功能→解决方案 structure
+□ Hero paragraph follows short version (2 sentences, ~40-55 words) OR long version (4 sentences, ~70-105 words, 定义→特点→功能→解决方案)
 □ Sentence 1 is product definition (NOT brand-first opening)
 □ **Hero brand mentions ≤ 1**（领导反馈：旧模板 3 次品牌词不能再出现）
-□ 4 core parameters listed with realistic ranges
+□ 2-4 core parameters listed with realistic ranges
 □ CTA button text clear
 
 Differentiation (from 阶段 0.7)
@@ -28,7 +28,7 @@ Differentiation (from 阶段 0.7)
 Body sections
 □ Definition / Overview accurate to your real product
 □ How it Works: 4-step process flow correct
-□ Specifications table: data matches your actual product manual ⚠️ MUST VERIFY
+□ Specifications table: data realistic (SEO 服务商场景 = plausibility check / 厂家自写场景 = MUST VERIFY against product manual)
 □ Applications: covers your real customer industries
 □ Selection Guide: 6-8 points with practical data
 □ Price Factors: NO specific USD prices given
@@ -37,9 +37,9 @@ Body sections
 Manufacturer section
 □ 2 paragraphs (NOT bullet lists)
 □ Full legal name in first sentence
-□ Years experience matches reality
-□ Certifications match reality (ISO9001, CE, etc.)
-□ Comprehensive services list matches what you can actually deliver
+□ Years experience: SEO 服务商场景 = plausibility check / 厂家自写场景 = matches reality
+□ Certifications: SEO 服务商场景 = 出口常见组合 OK / 厂家自写场景 = match reality (ISO9001, CE, etc.)
+□ Services list matches what you can actually deliver
 
 FAQ
 □ 8 Q&A covering all 8 dimensions
@@ -60,7 +60,11 @@ AI Check
 □ Brand mentioned naturally, not stuffed
 ```
 
-输出完后用中文说："**全部模块完成**。请你手动过一遍这个清单。⚠️ 重点核对：(1) Module 5 参数表必须对照你公司真实产品手册 (2) Module 7 案例数据必须替换为真实项目 (3) Module 12 制造商介绍的经验年限和认证必须真实。"
+输出完后用中文说："**全部模块完成**。请你手动过一遍这个清单。
+
+**如果你是 SEO 服务商代写场景**（默认）：重点是 plausibility check —— 数据是否有明显造假（小厂宣称 50,000+ 项目 / 1,000 t/h 微型机这类）；无明显问题可直接发布。
+
+**如果你是品牌方/厂家自写场景**：⚠️ 重点核对 3 件事 (1) Module 5 参数表必须对照真实产品手册 (2) Module 7 案例数据必须替换为真实项目 (3) Module 12 制造商介绍的经验年限和认证必须真实。"
 
 ---
 
