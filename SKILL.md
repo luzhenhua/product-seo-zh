@@ -20,7 +20,7 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 7. **数据具体化** — 写到"很多 / 高效 / 大量"这类模糊词时，强迫自己换成具体数字（feed size ≤XX mm、capacity XX-XX t/h、power XX-XX kW）
 8. **AI 产出 = 草稿，不是终稿** — 每一模块产出后明确告诉用户："这是 AI 草稿，发布前请人工核对数据真实性"
 9. **品牌名首次用全称、之后用简称** — 阶段 0.5 收集时同时问全称（如 "Henan Xinzhongyi Environmental Protection Equipment Co., Ltd."）和简称（如 "Zhongyi"）
-10. **全文总字数 ≤2,000 词（boss 红线）** —— 含表格全部单元格 + 正文 + bullet 全计入。跳 Module 7+8 必跑 ~1,985 词刚好；加 Module 7 或 8 → 其他模块需同步压缩至 ≤2,100 总。多数出口品牌站的产品页 UI 装不下更长内容
+10. **全文总字数 ≤2,000 词（boss 红线）** —— 含表格全部单元格 + 正文 + bullet 全计入。跑全部必跑模块约 1,985 词；若 AI 判定需要加 Module 7 或 8，其他模块需同步压缩至 ≤2,100 总。多数出口品牌站的产品页 UI 装不下更长内容
 11. **默认一次性出整篇（One-Shot）** —— 用户在阶段 0.5 后选"一次性"或不指定，AI 静默推进所有 Module 至完成；用户明确说"分模块跑"才走原来的逐模块审批流；跑完输出自检报告（字数 + 各模块达标 + 编造数据警示）
 12. **⭐ 每 Module 字数硬上限（零例外）** —— 每个 Module 的硬上限按 2,000 总预算反推（见 [reference/writing-consistency.md](reference/writing-consistency.md)）。含表格 Module 计入全部表格单元格。差异化角度复杂不豁免；超出立即重写。"差异化深度 ≠ 段落长度"——深度由数据密度（每 100 词 ≥4 个数据点）决定
 13. **⭐ 跨 Module 风格一致性** —— 整篇产品页应该读起来像一个工程师从头写到尾。bullet 长度、段落节奏、数据呈现方式、单位写法跨 Module 应该一致。Module 0 跑完必输出"风格基线"让后续锚定
@@ -206,20 +206,30 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 | 1 | H1 + Hero（H1 + 首屏） | [modules/01-hero.md](modules/01-hero.md) | ✅ 必跑 | "H1 / 首屏 / hero" |
 | 2 | What is / Overview（产品定义） | [modules/02-what-is.md](modules/02-what-is.md) | ✅ 必跑 | "定义 / what is / overview" |
 | 3 | How it Works（工作原理） | [modules/03-how-it-works.md](modules/03-how-it-works.md) | ✅ 必跑 | "原理 / how it works / working principle" |
-| 4 | Types / Configurations（产品类型） | [modules/04-types.md](modules/04-types.md) | ⚪ 按需 | "类型 / types" |
+| 4 | Types / Configurations（产品类型） | [modules/04-types.md](modules/04-types.md) | ⚪ AI 判 | "类型 / types" |
 | 5 | Specifications（参数规格） | [modules/05-specifications.md](modules/05-specifications.md) | ✅ 必跑 | "参数 / specs / specifications" |
 | 6 | Applications（应用场景） | [modules/06-applications.md](modules/06-applications.md) | ✅ 必跑 | "应用 / applications" |
-| 7 | Project Case（案例展示） | [modules/07-project-case.md](modules/07-project-case.md) | ⚪ 按需 | "案例 / case" |
-| 8 | vs Comparison（产品对比） | [modules/08-comparison.md](modules/08-comparison.md) | ⚪ 按需 | "对比 / vs / comparison" |
+| 7 | Project Case（案例展示） | [modules/07-project-case.md](modules/07-project-case.md) | ⚪ AI 判 | "案例 / case" |
+| 8 | vs Comparison（产品对比） | [modules/08-comparison.md](modules/08-comparison.md) | ⚪ AI 判 | "对比 / vs / comparison" |
 | 9 | How to Choose（采购指南） | [modules/09-selection-guide.md](modules/09-selection-guide.md) | ✅ 必跑 | "选型 / 采购指南 / how to choose" |
 | 10 | Price Factors（价格因素） | [modules/10-price-factors.md](modules/10-price-factors.md) | ✅ 必跑 | "价格 / price / cost" |
 | 11 | Custom Solutions（定制方案） | [modules/11-custom-solutions.md](modules/11-custom-solutions.md) | ✅ 必跑 | "定制 / custom solutions" |
 | 12 | Manufacturer（制造商介绍） | [modules/12-manufacturer.md](modules/12-manufacturer.md) | ✅ 必跑 | "制造商 / manufacturer / why choose" |
 | 13 | FAQ（常见问题） | [modules/13-faq.md](modules/13-faq.md) | ✅ 必跑 | "FAQ / 常见问题" |
 
-整套跑默认包含所有 ✅，跳过所有 ⚪。Module 7 Project Case 现在两种用户场景都能跑（SEO 服务商按脱敏虚构模板 + 5 项 plausibility check / 厂家自写用真实数据），整套跑里可问用户要不要加。
+### ⚪ AI 判模块的判断标准（One-Shot 模式自动执行）
 
-**执行顺序**：阶段 0.5 → 阶段 0.7 → Module 0 → 1 → 2 → 3 → (4) → 5 → 6 → (7) → (8) → 9 → 10 → 11 → 12 → 13 → 自检报告。括号 = 按需可跳。
+三个 ⚪ 模块不由用户选择，也不默认跳过 — AI 根据产品特征自行判断：
+
+**Module 4 Types** — 如果产品存在多个明显的分类维度（如不同型号/功率档位/应用配置/结构形式），而非单一规格 → **跑**。如果产品是单一配置的组件/设备，无需类型划分 → **跳过**。
+
+**Module 7 Project Case** — 如果产品是大型/高价/工程型设备（买家决策周期长、需要案例增强 credibility），且全文预算允许 → **跑**。如果是小型/低价/标准品，案例对决策帮助有限 → **跳过**。默认 SEO 服务商场景按虚构脱敏模板走。
+
+**Module 8 vs Comparison** — 如果竞品 brief 显示存在明确的可对比竞品（差异化角度可以通过对比清晰展现），且对比有实际选型参考价值 → **跑**。如果产品类型独特无直接竞品，或对比会变成泛泛而谈 → **跳过**。
+
+**整篇总预算**：若 AI 判定需要跑 Module 7 或 8，自动从其他模块按 -10% 同步压缩，保证全文 ≤2,100 词。Module 7 + 8 同时跑极不推荐（会突破 2,200 词）。
+
+**执行顺序**：阶段 0.5 → 阶段 0.7 → Module 0 → 1 → 2 → 3 → (4) → 5 → 6 → (7) → (8) → 9 → 10 → 11 → 12 → 13 → 自检报告。括号 = ⚪ AI 判模块，AI 按判断标准自行决定是否执行。
 
 ---
 
@@ -266,7 +276,7 @@ description: 中文输入、英文产出的 B2B 产品页面 SEO 创作工作流
 
 或自然语言："写产品页 / 按产品页流程做 / 帮我做完整产品页"
 
-→ 跑阶段 0.5（变量）→ 阶段 0.7（竞品研究）→ Module 0 → 13（顺序，按需跳 4/7/8）→ 自检报告 + 终审清单
+→ 跑阶段 0.5（变量）→ 阶段 0.7（竞品研究）→ Module 0 → 13（顺序，Module 4/7/8 由 AI 自行判断）→ 自检报告 + 终审清单
 
 ### 单模块调用
 

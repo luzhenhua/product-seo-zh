@@ -50,11 +50,11 @@ Standard skeleton (use as default, but ADJUST based on competitor brief):
 ② Hero area (below H1, not H2): core selling points + CTA buttons
 ③ H2: What is / Overview / Understanding
 ④ H2: How it Works / Working Principle
-⑤ H2: Types / Configurations [optional]
+⑤ H2: Types / Configurations [AI判]
 ⑥ H2: Specifications / Technical Parameters
 ⑦ H2: Applications / Industries & Materials
-⑧ H2: Project Case / Featured Project [optional]
-⑨ H2: vs Comparison [optional]
+⑧ H2: Project Case / Featured Project [AI判]
+⑨ H2: vs Comparison [AI判]
 ⑩ H2: How to Choose / Selection Guide / Buying Guide
 ⑪ H2: Price / Cost Factors / Pricing Guide
 ⑫ H2: Custom Solutions / Tailored Solutions / Request a Quote
@@ -92,7 +92,7 @@ Requirements:
 **执行说明**：
 - Title 2 个备选必须**算字符数**写在括号里（如 `(58 chars)`）
 - Description 同上
-- H2 数量 12-14（按需跳的 Module 4/7/8 决定 + 差异化新增/砍掉决定）
+- H2 数量 12-14（AI 判断 Module 4/7/8 是否写入 + 差异化新增/砍掉决定）
 - 输出 H2 列表后，**单独列一段中文**："本篇差异化 H2 是 [X] 和 [Y]，对应阶段 0.7 锁定的角度 [Z]；与最近 N 篇产品页的不同点是 [W]。"
 - ⭐ **必跑收尾**：H2 列表 + 差异化说明之后，必须输出**「本篇风格基线」**摘要（见 [reference/writing-consistency.md](../reference/writing-consistency.md)），让后续 11 个生成型 Module 锚定。格式如下：
 
@@ -134,7 +134,7 @@ Requirements:
 - "差异化深度 ≠ 段落长度"——深度由数据密度决定，不由字数决定
 ```
 
-- 跑完后用中文说："**Module 0 完成**，这是总骨架 + 风格基线。请确认 / 调整 H2 标题。回复'继续'进入 Module 1（H1 + 首屏），或说'跳过某 module'。"
+- 跑完后用中文说："**Module 0 完成**，这是总骨架 + 风格基线。请确认 / 调整 H2 标题。回复'继续'进入 Module 1（H1 + 首屏），或说'跳过某 module'（AI 会自行决定 ⚪ 模块是否执行）。"
 
 ---
 
